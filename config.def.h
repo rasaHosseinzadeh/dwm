@@ -98,6 +98,8 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *sysact[]  = { "sysact", NULL };
 static const char *slock[]  = { "slock", NULL };
 static const char *filemanger[] = {"pcmanfm", NULL};
+static const char *librewolf[] = {"librewolf", NULL};
+static const char *brave[] = {"brave", NULL};
 
 
 #include <X11/XF86keysym.h>
@@ -112,6 +114,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,      togglescratch,  {.ui = 3 } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.ui = 4 } },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = filemanger} },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = librewolf} },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = brave} },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = sysact} },
 	{ MODKEY|ShiftMask|ControlMask, XK_l,      spawn,          {.v = slock} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
