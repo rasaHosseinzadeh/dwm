@@ -57,8 +57,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
+	/* class      instance           title       tags mask       isfloating     monitor */
 	{ "mpv",         NULL,           NULL,       0,                   1,           -1,  },
+	{ NULL,          "sxiv",         NULL,       0,                   1,           -1,  },
+	{ NULL,          "wifi-gui",     NULL,       0,                   1,           -1,  },
+	{ NULL,          "dict",         NULL,       0,                   1,           -1,  },
 	{ NULL,          "spterm",       NULL, 	     SPTAG(0),            1,           1,   },
 	{ NULL,          "spnotes",      NULL, 	     SPTAG(1),            1,           1,   },
 	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           1,   },
@@ -100,7 +103,8 @@ static const char *slock[]  = { "slock", NULL };
 static const char *filemanger[] = {"pcmanfm", NULL};
 static const char *librewolf[] = {"librewolf", NULL};
 static const char *brave[] = {"brave", NULL};
-
+static const char *wifi[] = {"wifi-gui", NULL};
+static const char *dict[] = {TERMINAL, "-n", "dict", "-e", "dict", "-g", "120x34", NULL};
 
 #include <X11/XF86keysym.h>
 #include "movestack.c"
@@ -114,8 +118,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,      togglescratch,  {.ui = 3 } },
 	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.ui = 4 } },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = filemanger} },
+	{ MODKEY|ShiftMask,             XK_y,      spawn,          {.v = wifi} },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = librewolf} },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = brave} },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dict} },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = sysact} },
 	{ MODKEY|ShiftMask|ControlMask, XK_l,      spawn,          {.v = slock} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -168,7 +174,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin|ShiftMask,MODKEY,        Button1,        resizemouse,    {0} },
+	{ ClkClientWin         ,MODKEY|ShiftMask,Button1,       resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
