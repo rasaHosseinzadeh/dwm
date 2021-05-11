@@ -14,6 +14,7 @@ Applied patches
 - alpha
 - move stack
 - status on all monitor
+- tilegap
 
 There are 5 scratch pads activated with `Mod+Shift` plus `m,n,v,p,t`, respectively for music, notes, volume, passwords and terminal.
 `Mod+Shift+h` opens the file manger.
