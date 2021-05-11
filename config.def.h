@@ -100,11 +100,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-i", "-l", "10", "-m", dmenumon,
 static const char *termcmd[]  = { "st", NULL };
 static const char *sysact[]  = { "sysact", NULL };
 static const char *slock[]  = { "slock", NULL };
-static const char *filemanger[] = {"pcmanfm", NULL};
-static const char *librewolf[] = {"librewolf", NULL};
-static const char *brave[] = {"brave", NULL};
-static const char *wifi[] = {"wifi-gui", NULL};
-static const char *dict[] = {TERMINAL, "-n", "dict", "-e", "dict", "-g", "120x34", NULL};
+static const char *filemanger[] = { "pcmanfm", NULL };
+static const char *librewolf[] = { "librewolf", NULL };
+static const char *brave[] = { "brave", NULL };
+static const char *wifi[] = { "wifi-gui", NULL };
+static const char *dict[] = { TERMINAL, "-n", "dict", "-e", "dict", "-g", "120x34", NULL };
+static const char *dmkill[] = { "dmkill", NULL };
+static const char *scrot[] = { "scrot", NULL };
 
 #include <X11/XF86keysym.h>
 #include "movestack.c"
@@ -121,6 +123,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,      spawn,          {.v = wifi} },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = librewolf} },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = brave} },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = dmkill} },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = scrot} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dict} },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = sysact} },
 	{ MODKEY|ShiftMask|ControlMask, XK_l,      spawn,          {.v = slock} },
