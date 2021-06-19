@@ -14,20 +14,27 @@ static const char dmenufont[]       =  "Hack:size=16:antialias=true:autohint=tru
 static char normbgcolor[]           = "#282c34";
 static char normbordercolor[]       = "#282c34";
 static char normfgcolor[]           = "#d7d7d7";
-static char selbordercolor[]        = "#924441";
-static char selbgcolor[]            = "#924441";
+static char selbordercolor[]        = "#88527F";
+static char selbgcolor[]            = "#88527F";
 static char selfgcolor[]            = "#d7d7d7";
+static char lightbluecolor[]        = "#B1DDF1";
+static char grapecolor[]            = "#9F87AF";
+
 static const unsigned int baralpha = 0xee;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3] = {
        /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+       [SchemeNorm]  =   { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]   =   { selfgcolor,  selbgcolor,  selbordercolor  },
+	   [SchemeWarn]  =	 { lightbluecolor, normbgcolor, normbordercolor },
+	   [SchemeUrgent]=	 { grapecolor, normbgcolor, normbordercolor },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeNorm]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeWarn]  =	{ OPAQUE, baralpha, borderalpha },
+	[SchemeUrgent]=	{ OPAQUE, baralpha, borderalpha },
 };
 
 typedef struct {
