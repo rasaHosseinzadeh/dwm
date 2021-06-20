@@ -11,8 +11,8 @@ static const char *fonts[]          = {
     "Hack:size=14:antialias=true:autohint=true",
 };
 static const char dmenufont[]       =  "Hack:size=16:antialias=true:autohint=true";
-static char normbgcolor[]           = "#282c34";
-static char normbordercolor[]       = "#282c34";
+static char normbgcolor[]           = "#282a36";
+static char normbordercolor[]       = "#282a36";
 static char normfgcolor[]           = "#d7d7d7";
 static char selbordercolor[]        = "#88527F";
 static char selbgcolor[]            = "#88527F";
@@ -20,7 +20,7 @@ static char selfgcolor[]            = "#d7d7d7";
 static char lightbluecolor[]        = "#B1DDF1";
 static char grapecolor[]            = "#9F87AF";
 
-static const unsigned int baralpha = 0xee;
+static const unsigned int baralpha = 0xf2;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3] = {
        /*               fg           bg           border   */
