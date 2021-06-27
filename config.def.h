@@ -44,7 +44,7 @@ typedef struct {
 
 static const char *spterm[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 static const char *spnotes[] = {TERMINAL, "-n", "spnotes", "-g", "120x34","-e", "notes", NULL };
-static const char *spmus[] = {TERMINAL, "-n", "spmusic", "-g", "120x34","-e", "cmus", NULL };
+static const char *spmus[] = {TERMINAL, "-n", "spmusic", "-g", "120x34","-e", "ncmpcpp", NULL };
 static const char *spvol[] = {"pavucontrol", NULL };
 static const char *sppass[] = {"keepassxc", NULL };
 
@@ -68,13 +68,14 @@ static const Rule rules[] = {
 	/* class      instance           title       tags mask       isfloating     monitor */
 	{ "mpv",         NULL,           NULL,       0,                   1,           -1,  },
 	{ NULL,          "sxiv",         NULL,       0,                   1,           -1,  },
+	{ NULL,          NULL,           "sxiv",     0,                   1,           -1,  },
 	{ NULL,          "wifi-gui",     NULL,       0,                   1,           -1,  },
 	{ NULL,          "dict",         NULL,       0,                   1,           -1,  },
-	{ NULL,          "spterm",       NULL, 	     SPTAG(0),            1,           1,   },
-	{ NULL,          "spnotes",      NULL, 	     SPTAG(1),            1,           1,   },
-	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           1,   },
-	{ NULL,          "pavucontrol",  NULL, 	     SPTAG(3),            1,           1,   },
-	{ NULL,          "keepassxc",    NULL, 	     SPTAG(4),            1,           1,   },
+	{ NULL,          "spterm",       NULL, 	     SPTAG(0),            1,           -1,   },
+	{ NULL,          "spnotes",      NULL, 	     SPTAG(1),            1,           -1,   },
+	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           -1,   },
+	{ NULL,          "pavucontrol",  NULL, 	     SPTAG(3),            1,           -1,   },
+	{ NULL,          "keepassxc",    NULL, 	     SPTAG(4),            1,           -1,   },
 };
 
 /* layout(s) */
@@ -115,6 +116,7 @@ static const char *wifi[] = { "wifi-gui", NULL };
 static const char *dict[] = { TERMINAL, "-n", "dict", "-e", "dict", "-g", "120x34", NULL };
 static const char *dmkill[] = { "dmkill", NULL };
 static const char *scrot[] = { "scrot", NULL };
+static const char *albumcover[] = {"kunst", "--music_dir", "/home/rasa/Music", "--size", "500", NULL};
 
 #include <X11/XF86keysym.h>
 #include "movestack.c"
@@ -134,6 +136,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = scrot} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dict} },
 	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = sysact} },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = albumcover} },
 	{ MODKEY|ShiftMask|ControlMask, XK_l,      spawn,          {.v = slock} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = dmkill} },
@@ -163,8 +166,8 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioMute,		    spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -51 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioRaiseVolume,	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; kill -51 $(pidof dwmblocks)") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; kill -51 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,     SHCMD("xbacklight -inc 10; kill -50 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,     SHCMD("xbacklight -dec 10; kill -50 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,     SHCMD("backlight_control +5; kill -50 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,     SHCMD("backlight_control -5; kill -50 $(pidof dwmblocks)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
