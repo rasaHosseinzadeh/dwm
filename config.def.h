@@ -1,6 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-#define TERMINAL "st"
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;       /* gap pixel between windows */
@@ -37,26 +36,6 @@ static const unsigned int alphas[][3]      = {
 	[SchemeUrgent]=	{ OPAQUE, baralpha, borderalpha },
 };
 
-typedef struct {
-	const char *name;
-	const void *cmd;
-} Sp;
-
-static const char *spterm[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
-static const char *spnotes[] = {TERMINAL, "-n", "spnotes", "-g", "120x34","-e", "notes", NULL };
-static const char *spmus[] = {TERMINAL, "-n", "spmusic", "-g", "120x34","-e", "ncmpcpp", NULL };
-static const char *spvol[] = {"pavucontrol", NULL };
-static const char *sppass[] = {"keepassxc", NULL };
-
-static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",      spterm},
-	{"spnotes",     spnotes},
-	{"spmus",       spmus},
-	{"spvol",       spvol},
-	{"sppass",      sppass},
-};
-
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -76,6 +55,27 @@ static const Rule rules[] = {
 	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           -1,   },
 	{ NULL,          "pavucontrol",  NULL, 	     SPTAG(3),            1,           -1,   },
 	{ NULL,          "keepassxc",    NULL, 	     SPTAG(4),            1,           -1,   },
+};
+
+/* Scratchpads */
+typedef struct {
+       const char *name;
+       const void *cmd;
+} Sp;
+#define TERMINAL "st"
+static const char *spterm[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
+static const char *spnotes[] = {TERMINAL, "-n", "spnotes", "-g", "120x34","-e", "notes", NULL };
+static const char *spmus[] = {TERMINAL, "-n", "spmusic", "-g", "120x34","-e", "ncmpcpp", NULL };
+static const char *spvol[] = {"pavucontrol", NULL };
+static const char *sppass[] = {"keepassxc", NULL };
+
+static Sp scratchpads[] = {
+       /* name          cmd  */
+       {"spterm",      spterm},
+       {"spnotes",     spnotes},
+       {"spmus",       spmus},
+       {"spvol",       spvol},
+       {"sppass",      sppass},
 };
 
 /* layout(s) */
@@ -100,46 +100,20 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-l", "10", "-m", dmenumon, "-fn", dmenufont, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-l", "10", NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *sysact[]  = { "sysact", NULL };
-static const char *slock[]  = { "slock", NULL };
-static const char *filemanger[] = { "pcmanfm", NULL };
-static const char *firefox[] = { "firefox", NULL };
-static const char *brave[] = { "brave", NULL };
-static const char *wifi[] = { "wifi-gui", NULL };
-static const char *dict[] = { TERMINAL, "-n", "dict", "-e", "dict", "-g", "120x34", NULL };
-static const char *dmkill[] = { "dmkill", NULL };
-static const char *scrot[] = { "scrot", NULL };
-static const char *albumcover[] = {"kunst", "--music_dir", "/home/rasa/Music", "--size", "500", NULL};
 
-#include <X11/XF86keysym.h>
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_t,      togglescratch,  {.ui = 0 } },
-	{ MODKEY|ShiftMask,             XK_n,      togglescratch,  {.ui = 1 } },
-	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.ui = 2 } },
-	{ MODKEY|ShiftMask,             XK_v,      togglescratch,  {.ui = 3 } },
-	{ MODKEY|ShiftMask,             XK_p,      togglescratch,  {.ui = 4 } },
-	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = filemanger} },
-	{ MODKEY|ShiftMask,             XK_y,      spawn,          {.v = wifi} },
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = firefox} },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = brave} },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = scrot} },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = dict} },
-	{ MODKEY|ShiftMask,             XK_q,      spawn,          {.v = sysact} },
-	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = albumcover} },
-	{ MODKEY|ShiftMask|ControlMask, XK_l,      spawn,          {.v = slock} },
+    { MODKEY|ControlMask,           XK_t,      togglescratch,  {.ui = 0 } },
+    { MODKEY|ControlMask,           XK_n,      togglescratch,  {.ui = 1 } },
+    { MODKEY|ControlMask,           XK_m,      togglescratch,  {.ui = 2 } },
+    { MODKEY|ControlMask,           XK_v,      togglescratch,  {.ui = 3 } },
+    { MODKEY|ControlMask,           XK_p,      togglescratch,  {.ui = 4 } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_w,      spawn,          {.v = dmkill} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
@@ -162,12 +136,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ 0, XF86XK_PowerOff,           spawn,     SHCMD("slock") },
-	{ 0, XF86XK_AudioMute,		    spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; kill -51 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; kill -51 $(pidof dwmblocks)") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; kill -51 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,     SHCMD("backlight_control +5; kill -50 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,     SHCMD("backlight_control -5; kill -50 $(pidof dwmblocks)") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -186,7 +154,6 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin         ,MODKEY|ShiftMask,Button1,       resizemouse,    {0} },
