@@ -48,13 +48,13 @@ static const Rule rules[] = {
 	{ "mpv",         NULL,           NULL,       0,                   1,           -1,  },
 	{ NULL,          "sxiv",         NULL,       0,                   1,           -1,  },
 	{ NULL,          NULL,           "sxiv",     0,                   1,           -1,  },
-	{ NULL,          "wifi-gui",     NULL,       0,                   1,           -1,  },
+	{ NULL,          "connman-gtk",  NULL, 	     0,                   1,           -1,  },
 	{ NULL,          "dict",         NULL,       0,                   1,           -1,  },
-	{ NULL,          "spterm",       NULL, 	     SPTAG(0),            1,           -1,   },
-	{ NULL,          "spnotes",      NULL, 	     SPTAG(1),            1,           -1,   },
-	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           -1,   },
-	{ NULL,          "pavucontrol",  NULL, 	     SPTAG(3),            1,           -1,   },
-	{ NULL,          "keepassxc",    NULL, 	     SPTAG(4),            1,           -1,   },
+	{ NULL,          "spterm",       NULL, 	     SPTAG(0),            1,           -1,  },
+	{ NULL,          "spnotes",      NULL, 	     SPTAG(1),            1,           -1,  },
+	{ NULL,          "spmusic",      NULL, 	     SPTAG(2),            1,           -1,  },
+	{ NULL,          "pavucontrol",  NULL, 	     SPTAG(3),            1,           -1,  },
+	{ NULL,          "keepassxc",    NULL, 	     SPTAG(4),            1,           -1,  },
 };
 
 /* Scratchpads */
